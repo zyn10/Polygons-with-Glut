@@ -1,246 +1,414 @@
-//Jeff Chastine
+#include <iostream>
 #include <Windows.h>
 #include <GL\glew.h>
 #include <GL\freeglut.h>
-#include <iostream>
-#include<stdlib.h>
-#include<cstdlib>
-#include<math.h>
+#include <stdlib.h>
+#include <cstdlib>
+#include <math.h>
+#include<ctime>
+#include<string.h>
+#include<string>
 using namespace std;
-#define PI 3.1415926
-//---->For drawing Circle
-void Triangle()
-{   //------>Filled Triangle
-	glBegin(GL_TRIANGLES);
-	glColor3ub(225, 171, 0);
-	glVertex2f(-0.7, 0.7);
-	glVertex2f(-0.9, 0.7);
-	glVertex2f(-0.8, 0.9);
-	glEnd();
-	//------>HollowTriangle
-	glBegin(GL_LINES);
-	glColor3ub(225, 171, 0);
-	glVertex2f(-0.6, 0.7);//1
-	glVertex2f(-0.5, 0.9);//2
-	glVertex2f(-0.5, 0.9);//2
-	glVertex2f(-0.4, 0.7);//3
-	glVertex2f(-0.4, 0.7);//3
-	glVertex2f(-0.6, 0.7);//1
-	glEnd();
-	glFlush();
-}
-void Rohumbus()
-{   //------>Filled Rohumbus
-	glBegin(GL_QUADS);
-	glColor3ub(0, 150, 254);
-	glVertex2f(-0.1, 0.65);
-	glVertex2f(-0.2, 0.8);
-	glVertex2f(-0.1, 0.95);
-	glVertex2f(0.0, 0.8);
-	glVertex2f(-0.1, 0.65);
-	glEnd();
-	//------>Hollow Rohumbus
-	glBegin(GL_LINES);
-	glColor3ub(0, 150, 254);
-	glVertex2f(0.05, 0.8);
-	glVertex2f(0.15, 0.95);
-	glVertex2f(0.15, 0.95);
-	glVertex2f(0.25, 0.8);
-	glVertex2f(0.25, 0.8);
-	glVertex2f(0.15, 0.65);
-	glVertex2f(0.15, 0.65);
-	glVertex2f(0.05, 0.8);
-	glEnd();
-	glFlush();
-}
-void Pentagon()
-{  //------>Filled Pentagon
-	glBegin(GL_POLYGON);
-	glColor3ub(220, 70, 0);
-	glVertex2f(0.45, 0.65);
-	glVertex2f(0.55, 0.65);
-	glVertex2f(0.6, 0.8);
-	glVertex2f(0.5, 0.95);
-	glVertex2f(0.4, 0.8);
-	glVertex2f(0.45, 0.65);
-	glEnd();
-	//------>Hollow Pentagon
-	glBegin(GL_LINES);
-	glColor3ub(220, 70, 0);
-	glVertex2f(0.75, 0.65);//1
-	glVertex2f(0.85, 0.65);//2
-	glVertex2f(0.85, 0.65);//2
-	glVertex2f(0.9, 0.8);//3
-	glVertex2f(0.9, 0.8);//3
-	glVertex2f(0.8, 0.95);//4
-	glVertex2f(0.8, 0.95);//4
-	glVertex2f(0.7, 0.8);//5
-	glVertex2f(0.7, 0.8);//5
-	glVertex2f(0.75, 0.65);//1
-	glEnd();
-}
-void Hexagon()
-{   //------>Filled Hexagon
-	glBegin(GL_POLYGON);
-	glColor3ub(170, 170, 0);
-	glVertex2f(-0.7, 0.32);
-	glVertex2f(-0.8, 0.4);
-	glVertex2f(-0.9, 0.32);
-	glVertex2f(-0.9, 0.18);
-	glVertex2f(-0.8, 0.1);
-	glVertex2f(-0.7, 0.18);
-	glVertex2f(-0.7, 0.32);
-	glEnd();
-	//------>Hollow Hexagon
-	glBegin(GL_LINES);
-	glColor3ub(170, 170, 0);
-	glVertex2f(-0.4, 0.32);//1
-	glVertex2f(-0.5, 0.4);//2
-	glVertex2f(-0.5, 0.4);//2
-	glVertex2f(-0.6, 0.32);//3
-	glVertex2f(-0.6, 0.32);//3
-	glVertex2f(-0.6, 0.18);//4
-	glVertex2f(-0.6, 0.18);//4
-	glVertex2f(-0.5, 0.1);//5
-	glVertex2f(-0.5, 0.1);//5
-	glVertex2f(-0.4, 0.18);//6
-	glVertex2f(-0.4, 0.18);//6
-	glVertex2f(-0.4, 0.32);//1
-	glEnd();
-}
-void Heptagon()
-{   //------>Filled Heptagon
-	glBegin(GL_POLYGON);
-	glColor3ub(220, 260, 0);
-	glVertex2f(-0.69, -0.32);
-	glVertex2f(-0.75, -0.4);
-	glVertex2f(-0.85, -0.4);
-	glVertex2f(-0.91, -0.32);
-	glVertex2f(-0.9, -0.18);
-	glVertex2f(-0.8, -0.1);
-	glVertex2f(-0.7, -0.18);
-	glVertex2f(-0.7, -0.32);
-	glEnd();
-	//------>Hollow Heptagon
-	glBegin(GL_LINES);
-	glColor3ub(220, 260, 0);
-	glVertex2f(-0.39, -0.32);//1
-	glVertex2f(-0.45, -0.4);//2
-	glVertex2f(-0.45, -0.4);//2
-	glVertex2f(-0.55, -0.4);//3
-	glVertex2f(-0.55, -0.4);//3
-	glVertex2f(-0.61, -0.32);//4
-	glVertex2f(-0.61, -0.32);//4
-	glVertex2f(-0.6, -0.18);//5
-	glVertex2f(-0.6, -0.18);//5
-	glVertex2f(-0.5, -0.1);//6
-	glVertex2f(-0.5, -0.1);//6
-	glVertex2f(-0.4, -0.18);//7
-	glVertex2f(-0.4, -0.18);//7
-	glVertex2f(-0.39, -0.32);//1
-	glEnd();
-
-}
-void Octagon()
-{   //------>Filled Octagon
-	glBegin(GL_POLYGON);
-	glColor3ub(216, 0, 254);
-	glVertex2f(0.4, 0.1);
-	glVertex2f(0.32, 0.18);
-	glVertex2f(0.32, 0.32);
-	glVertex2f(0.4, 0.4);
-	glVertex2f(0.5, 0.4);
-	glVertex2f(0.58, 0.32);
-	glVertex2f(0.58, 0.18);
-	glVertex2f(0.5, 0.1);
-	glEnd();
-	//------>Hollow Octagon
-	glBegin(GL_LINES);
-	glColor3ub(216, 0, 254);
-	glVertex2f(0.7, 0.1);//1
-	glVertex2f(0.62, 0.18);//2
-	glVertex2f(0.62, 0.18);//2
-	glVertex2f(0.62, 0.32);//3
-	glVertex2f(0.62, 0.32);//3
-	glVertex2f(0.7, 0.4);//4
-	glVertex2f(0.7, 0.4);//4
-	glVertex2f(0.8, 0.4);//5
-	glVertex2f(0.8, 0.4);//5
-	glVertex2f(0.88, 0.32);//6
-	glVertex2f(0.88, 0.32);//6
-	glVertex2f(0.88, 0.18);//7
-	glVertex2f(0.88, 0.18);//7
-	glVertex2f(0.8, 0.1);//8
-	glVertex2f(0.8, 0.1);//8
-	glVertex2f(0.7, 0.1);//1
-	glEnd();
-	glFlush();
-}
-void Circle()
-{   //------>Filled Circle
-	GLfloat x = -.15;
-	GLfloat y = .2;
-	GLfloat Radius = .12f;
-	int tri = 360;
-	GLfloat doublepi = 2.0f *PI;
-	glBegin(GL_TRIANGLE_FAN);
-	glColor3ub(220, 220, 0);
-	glVertex2f(x, y);
-	for (int i = 0; i <= tri; i++)
+#define PI 3.1415926//-----------> will be used in Rotation
+void text(string input)//-------->Function to print text on opengl Screen
+{
+	glColor3f(1.0, 0, 0);
+	glRasterPos2f(-0.8, 0.8);
+	for (int i = 0; i < input.length(); i++)
 	{
-		glVertex2f(
-			x + (Radius * cos(i * doublepi / tri)),
-			y + (Radius * sin(i * doublepi / tri))
-		);
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, input[i]);
 	}
-	glEnd();
-	//------>Hollow Circle
-	x = +.15;
-	y = .2;
-	Radius = .12f;
-	static const double inc = PI / 12;
-	static const double max = 2 * PI;
-	glColor3ub(220, 520, 0);
-	glBegin(GL_LINE_LOOP);
-	for (double d = 0; d < max; d += inc) {
-		glVertex2f(cos(d) * Radius + x, sin(d) * Radius + y);
-	}
-	glEnd();
-
 }
+void Draw(float Array[8])//-------->Function to draw the shapes 
+{
+	glBegin(GL_QUADS);
+	glColor3ub(0, rand() % 1000, rand() % 1000); //----> Random Colour of shape everytime
+	glVertex2f(Array[0], Array[1]);
+	glVertex2f(Array[2], Array[3]);
+	glVertex2f(Array[4], Array[5]);
+	glVertex2f(Array[6], Array[7]);
+	glEnd();
+}
+//All the definitions of the following funtions are below main
+void multiplyMatrices(float firstMatrix[2][2], float secondMatrix[2][1], float multResult[2][1]);
+void display(float mult[2][1], float &a, float &b);
+void DisplayArraypoints(float Array[8]);
+void Rotation45(float mult[2][1], float pointsArray[8]);//Rotation of all points 45 degree clockwise
+void Scalling32(float mult[2][1], float pointsArray[8]);//Scalling the Matrix by 3 and 2
+void Scale1point23(float mult[2][1], float pointsArray[8], int &fixedpoint);//scale one point by 2 and 3
+void Rotate90C(float mult[2][1], float pointsArray[8], int &fixedpoint);//same point 90 degree clockwise
+void ReflectionOrigin(float mult[2][1], float pointsArray[8]);//Reflection on origin
+void SheerTransformation(float mult[2][1], float pointsArray[8]);//Sheer transformation of 2 on -1 y
+void Rotate90AC(float mult[2][1], float pointsArray[8]);//90 Degree Anti-Clockwise
+void Tran(float mult[2][1], float pointsArray[8]);
+void Scaling21(float mult[2][1], float pointsArray[8]);
 
 void render()
 {
+	float pointsArray[8];// = { -0.1,-0.1,0.1,-0.1,0.1,0.1,-0.1,0.1 };//points for testing
+
+	float mult[2][1];
+	int input = 0;//for one fixed point 
+	////////////////////////////////////////////////////
+	cout << "Please input 4 points (x and y of both)" << endl;
+	for (int i = 0; i < 8; i = i + 2)
+	{
+		if (i == 0)
+		{
+			cout << "Input the " << i + 1 << " point of the Quaderletral " << endl;
+		}
+		else
+		{
+			cout << "Input the " << i - 1 << " point of the Quaderletral " << endl;
+		}	cout << "X "; cin >> pointsArray[i];
+		cout << "y "; cin >> pointsArray[i + 1];
+		
+	}
 	glClearColor(0.576471f, 0.847059f, 0.737255f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//------>Shapes
-	Triangle();
-	Rohumbus();
-	Pentagon();
-	Hexagon();
-	Heptagon();
-	Octagon();
-	Circle();
+	text("Basic Shape with given points");
+	Draw(pointsArray);
 	glutSwapBuffers();
+	system("pause");
+	//////////////////////////////////////////////////////
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.271f, 0.259f, 0.255f, 1.0f);
+	Rotation45(mult, pointsArray);
+	DisplayArraypoints(pointsArray);
+	text("Rotation 45 Degree Clockwise");
+	Draw(pointsArray);
+	glutSwapBuffers();
+	system("pause");
+	////////////////////////////////////////////////////
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.576f, 0.847f, 0.730f, 1.0f);
+	Scalling32(mult, pointsArray);
+	DisplayArraypoints(pointsArray);
+	text("Scalling by Factor ' 3 , 2'");
+	Draw(pointsArray);
+	glutSwapBuffers();
+	system("pause");
+	////////////////////////////////////////////////////
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.576471f, 0.847059f, 0.737255f, 1.0f);
+	Scale1point23(mult, pointsArray, input);
+	DisplayArraypoints(pointsArray);
+	text("Scalling of choosen by Factor ' 2, 3'");
+	Draw(pointsArray);
+	glutSwapBuffers();
+	system("pause");
+	////////////////////////////////////////////////////
+	glClearColor(0.576f, 0.847f, 0.730f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	Rotate90C(mult, pointsArray, input);
+	DisplayArraypoints(pointsArray); 
+	text("Rotation of same point by 90 degree clockwise");
+	Draw(pointsArray);
+	glutSwapBuffers();
+	system("pause");
+	//////////////////////////////////////////////
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.576f, 0.847f, 0.730f, 1.0f);
+	ReflectionOrigin(mult, pointsArray);
+	DisplayArraypoints(pointsArray);
+	text("Reflection of the Quadrilateral about origin");
+	Draw(pointsArray);
+	glutSwapBuffers();
+	system("pause");
+	////////////////////////////////////////////
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.271f, 0.259f, 0.255f, 1.0f);
+	SheerTransformation(mult, pointsArray);
+	DisplayArraypoints(pointsArray);
+	text("Shering by parameter of 2");
+	Draw(pointsArray);
+	glutSwapBuffers();
+	system("pause");
+	////////////////////////////////////////////
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.555f, 0.555f, 0.555f, 1.0f);
+	Rotate90AC(mult, pointsArray);
+	DisplayArraypoints(pointsArray);
+	text("Rotation of 90 Degree Clockwise");
+	Draw(pointsArray);
+	glutSwapBuffers();
+	system("pause");
+	////////////////////////////////////////////
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.576471f, 0.847059f, 0.737255f, 1.0f);
+	Tran(mult, pointsArray);
+	DisplayArraypoints(pointsArray);
+	text("Translation");
+	Draw(pointsArray);
+	glutSwapBuffers();
+	system("pause");
+////////////////////////////////////////////////////
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.576471f, 0.847059f, 0.737255f, 1.0f);
+	Scaling21(mult, pointsArray);
+	DisplayArraypoints(pointsArray);
+	text("Scaling by factor 2 1");
+	Draw(pointsArray);
+	glutSwapBuffers();
+	system("pause");
+	////////////////////////////////////////////
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.576471f, 0.847059f, 0.737255f, 1.0f);
+	text("Final Shape after all transformations");
+	Draw(pointsArray);
+	glutSwapBuffers();
+	system("pause");
+	exit(0);
+
 }
-
-
-
-int main(int argc, char* argv[]) {
-
+int main(int argc, char* argv[]) 
+{
+	srand(time(0));
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
-	glutInitWindowSize(1024, 786);
+	glutInitWindowSize(860, 680);
 	glutCreateWindow("Dijesh");
-
-	glutDisplayFunc(render);
-
+	glutDisplayFunc( render);
 	GLenum err = glewInit();
-	if (GLEW_OK != err) {
+	if (GLEW_OK != err) 
+	{
 		fprintf(stderr, "GLEW error");
 		return 1;
 	}
 
 	glutMainLoop();
+	exit:
 	return 0;
+}
+void multiplyMatrices(float firstMatrix[2][2], float secondMatrix[2][1], float mult[2][1])
+{
+	// Initializing elements of matrix mult to 0.
+	for (int i = 0; i < 2; ++i)
+	{
+		for (int j = 0; j < 1; ++j)
+		{
+			mult[i][j] = 0;
+		}
+	}
+	for (int i = 0; i < 2; ++i)
+	{
+		for (int j = 0; j < 1; ++j)
+		{
+			for (int k = 0; k < 2; ++k)
+			{
+				mult[i][j] += firstMatrix[i][k] * secondMatrix[k][j];
+			}
+		}
+	}
+}
+void display(float mult[2][1], float &a, float &b)
+{
+	cout << "Output Matrix:" << endl;
+	for (int i = 0; i < 2; ++i)
+	{
+		for (int j = 0; j < 1; ++j)
+		{
+			if (i == 0) { a = mult[i][j]; }
+			else { b = mult[i][j]; }
+
+			cout << mult[i][j] << " ";
+			if (j == 1 - 1)
+				cout << endl;
+		}
+
+	}
+}
+void DisplayArraypoints(float pointsArray[8])
+{
+	for (int i = 0; i < 8; i++)
+	{
+		cout << " " << pointsArray[i];
+	}cout << endl;
+}
+void Rotation45(float mult[2][1], float pointsArray[8])
+{//Rotation 45 degrees Clockwise
+	float p1[2][1] = { pointsArray[0],pointsArray[1] };
+	float p2[2][1] = { pointsArray[2],pointsArray[3] };
+	float p3[2][1] = { pointsArray[4],pointsArray[5] };
+	float p4[2][1] = { pointsArray[6],pointsArray[7] };
+	float R45[2][2] = { { static_cast<float>(cos(PI / 4)),static_cast<float>(sin(PI / 4))},{static_cast<float>(-sin(PI / 4)),static_cast<float>(cos(PI / 4))} };
+	multiplyMatrices(R45, p1, mult);
+	display(mult, pointsArray[0], pointsArray[1]);
+	multiplyMatrices(R45, p2, mult);
+	display(mult, pointsArray[2], pointsArray[3]);
+	multiplyMatrices(R45, p3, mult);
+	display(mult, pointsArray[4], pointsArray[5]);
+	multiplyMatrices(R45, p4, mult);
+	display(mult, pointsArray[6], pointsArray[7]);
+}
+void Scalling32(float mult[2][1], float pointsArray[8])
+{  
+	float p1[2][1] = { pointsArray[0],pointsArray[1] };
+	float p2[2][1] = { pointsArray[2],pointsArray[3] };
+	float p3[2][1] = { pointsArray[4],pointsArray[5] };
+	float p4[2][1] = { pointsArray[6],pointsArray[7] };
+	float Scale32[2][2] = { {3,0},{0,2} };
+	multiplyMatrices(Scale32, p1, mult);
+	display(mult, pointsArray[0], pointsArray[1]);
+	multiplyMatrices(Scale32, p2, mult);
+	display(mult, pointsArray[2], pointsArray[3]);
+	multiplyMatrices(Scale32, p3, mult);
+	display(mult, pointsArray[4], pointsArray[5]);
+	multiplyMatrices(Scale32, p4, mult);
+	display(mult, pointsArray[6], pointsArray[7]);
+}
+void Scale1point23(float mult[2][1], float pointsArray[8], int &input)
+{
+	float p1[2][1] = { pointsArray[0],pointsArray[1] };
+	float p2[2][1] = { pointsArray[2],pointsArray[3] };
+	float p3[2][1] = { pointsArray[4],pointsArray[5] };
+	float p4[2][1] = { pointsArray[6],pointsArray[7] };
+	float Scale23[2][2] = { {2,0},{0,3} };
+
+
+
+	cout << "Which Point you want to take for Scaling" << endl;
+	cout << "Press 1 for Point A" << endl;
+	cout << "Press 2 for Point B" << endl;
+	cout << "Press 3 for Point C" << endl;
+	cout << "Press 4 for Point D" << endl;
+
+	while (!(cin >> input))
+	{
+		cin.clear();
+		while (cin.get() != '\n') continue;
+		cout << "Invalid Value ...Input again " << ERROR << endl;
+	}
+
+	if (input == 1)
+	{
+		multiplyMatrices(Scale23, p1, mult);
+		display(mult, pointsArray[0], pointsArray[1]);
+	}
+	else if (input == 2)
+	{
+		multiplyMatrices(Scale23, p2, mult);
+		display(mult, pointsArray[2], pointsArray[3]);
+	}
+	else if (input == 3)
+	{
+		multiplyMatrices(Scale23, p3, mult);
+		display(mult, pointsArray[4], pointsArray[5]);
+	}
+	else if (input == 4)
+	{
+		multiplyMatrices(Scale23, p4, mult);
+		display(mult, pointsArray[6], pointsArray[7]);
+	}
+}
+void Rotate90C(float mult[2][1], float pointsArray[8], int &input)
+{
+	float p1[2][1] = { pointsArray[0],pointsArray[1] };
+	float p2[2][1] = { pointsArray[2],pointsArray[3] };
+	float p3[2][1] = { pointsArray[4],pointsArray[5] };
+	float p4[2][1] = { pointsArray[6],pointsArray[7] };
+	float R45[2][2] = { {0,1},{-1,0} };//Rotation Matrix
+	cout << input << endl;
+	if (input == 1)//Already Taken
+	{
+		multiplyMatrices(R45, p1, mult);
+		display(mult, pointsArray[0], pointsArray[1]);
+	}
+	else if (input == 2)
+	{
+		multiplyMatrices(R45, p2, mult);
+		display(mult, pointsArray[2], pointsArray[3]);
+	}
+	else if (input == 3)
+	{
+		multiplyMatrices(R45, p3, mult);
+		display(mult, pointsArray[4], pointsArray[5]);
+	}
+	else if (input == 4)
+	{
+		multiplyMatrices(R45, p4, mult);
+		display(mult, pointsArray[6], pointsArray[7]);
+	}
+}
+void ReflectionOrigin(float mult[2][1], float pointsArray[8])
+{
+	float p1[2][1] = { pointsArray[0],pointsArray[1] };
+	float p2[2][1] = { pointsArray[2],pointsArray[3] };
+	float p3[2][1] = { pointsArray[4],pointsArray[5] };
+	float p4[2][1] = { pointsArray[6],pointsArray[7] };
+	float RefO[2][2] = { {-1,0},{0,-1} };
+	multiplyMatrices(RefO, p1, mult);
+	display(mult, pointsArray[0], pointsArray[1]);
+	multiplyMatrices(RefO, p2, mult);
+	display(mult, pointsArray[2], pointsArray[3]);
+	multiplyMatrices(RefO, p3, mult);
+	display(mult, pointsArray[4], pointsArray[5]);
+	multiplyMatrices(RefO, p4, mult);
+	display(mult, pointsArray[6], pointsArray[7]);
+}
+void SheerTransformation(float mult[2][1], float pointsArray[8])
+{
+	float p1[2][1] = { pointsArray[0],pointsArray[1] };
+	float p2[2][1] = { pointsArray[2],pointsArray[3] };
+	float p3[2][1] = { pointsArray[4],pointsArray[5] };
+	float p4[2][1] = { pointsArray[6],pointsArray[7] };
+	float Sheer2[2][2] = { {1,0},{2,1} };
+	multiplyMatrices(Sheer2, p1, mult);
+	display(mult, pointsArray[0], pointsArray[1]);
+	multiplyMatrices(Sheer2, p2, mult);
+	display(mult, pointsArray[2], pointsArray[3]);
+	multiplyMatrices(Sheer2, p3, mult);
+	display(mult, pointsArray[4], pointsArray[5]);
+	multiplyMatrices(Sheer2, p4, mult);
+	display(mult, pointsArray[6], pointsArray[7]);
+}
+
+//Rotate 90 degree Anti clockwise
+void Rotate90AC(float mult[2][1], float pointsArray[8])
+{
+	float p1[2][1] = { pointsArray[0],pointsArray[1] };
+	float p2[2][1] = { pointsArray[2],pointsArray[3] };
+	float p3[2][1] = { pointsArray[4],pointsArray[5] };
+	float p4[2][1] = { pointsArray[6],pointsArray[7] };
+	float R45[2][2] = { {0,-1},{1,0} };//Rotation Matrix 90 degree anti clockwise
+	multiplyMatrices(R45, p1, mult);
+	display(mult, pointsArray[0], pointsArray[1]);
+	multiplyMatrices(R45, p2, mult);
+	display(mult, pointsArray[2], pointsArray[3]);
+	multiplyMatrices(R45, p3, mult);
+	display(mult, pointsArray[4], pointsArray[5]);
+	multiplyMatrices(R45, p4, mult);
+	display(mult, pointsArray[6], pointsArray[7]);
+}
+void Tran(float mult[2][1], float pointsArray[8])
+{
+	float p1[2][1] = { pointsArray[0],pointsArray[1] };
+	float p2[2][1] = { pointsArray[2],pointsArray[3] };
+	float p3[2][1] = { pointsArray[4],pointsArray[5] };
+	float p4[2][1] = { pointsArray[6],pointsArray[7] };
+	float T[2][2] = { {0,2},{1,5} };
+	multiplyMatrices(T, p1, mult);
+	display(mult, pointsArray[0], pointsArray[1]);
+	multiplyMatrices(T, p2, mult);
+	display(mult, pointsArray[2], pointsArray[3]);
+	multiplyMatrices(T, p3, mult);
+	display(mult, pointsArray[4], pointsArray[5]);
+	multiplyMatrices(T, p4, mult);
+	display(mult, pointsArray[6], pointsArray[7]);
+}
+void Scaling21(float mult[2][1], float pointsArray[8])
+{
+	float p1[2][1] = { pointsArray[0],pointsArray[1] };
+	float p2[2][1] = { pointsArray[2],pointsArray[3] };
+	float p3[2][1] = { pointsArray[4],pointsArray[5] };
+	float p4[2][1] = { pointsArray[6],pointsArray[7] };
+	float S21[2][2] = { {2,0},{2,1} };
+	multiplyMatrices(S21, p1, mult);
+	display(mult, pointsArray[0], pointsArray[1]);
+	multiplyMatrices(S21, p2, mult);
+	display(mult, pointsArray[2], pointsArray[3]);
+	multiplyMatrices(S21, p3, mult);
+	display(mult, pointsArray[4], pointsArray[5]);
+	multiplyMatrices(S21, p4, mult);
+	display(mult, pointsArray[6], pointsArray[7]);
 }
